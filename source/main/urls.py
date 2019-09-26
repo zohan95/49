@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from webapp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', MainPage.as_view(), name='main_url'),
+    path('task/<int:pk>/', TaskDetails.as_view(), name='task_details_url'),
+    path('task/create/', TaskCreate.as_view(), name='task_create_url'),
+    path('task/edit/<int:pk>/', TaskEdit.as_view(), name='task_edit_url'),
+    path('task/delete/<int:pk>/', TaskDelete.as_view(), name='task_delete_url')
 ]

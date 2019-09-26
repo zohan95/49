@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5 card card-1">
+        <h5>Описание: {{ task.summary }}</h5>
+        <p>Детальное описание: {{ task.description }}</p>
+        <p>Статус: {{ task.task_status }}</p>
+        <p>Тип: {{ task.task_type }}</p>
+        <p>Дата создания: {{ task.date_create }}</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="{% url 'main_url' %}" method="post">
+        {% csrf_token %}
+        <div class="container mt-5">
+            <div class="row">
+                {% for i in tasks %}
+                    <div class="col-sm-4 my-2">
+                        <div class="card card-1 ">
+                            <div id="question_text_{{ i.pk }}">
+                                <div class="card-body">
+                                    <p class="card-text">{{ i.summary }}</p>
+                                    <hr>
+                                    <p class="card-text">{{ i.description }}</p>
+                                    <hr>
+                                    <p>{{ i.task_status }}</p>
+                                    <hr>
+                                    <p>{{ i.task_type }}</p>
+                                    <a href="{% url 'task_details_url' i.pk %}" class="btn btn-primary">Детали</a>
+                                    <a href="{% url 'task_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
+                                    <a href="{% url 'task_delete_url' i.pk %}" class="btn btn-danger">X</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="plus-button">
+            <a href="{% url 'task_create_url' %}" class="text-decoration-none">+</a>
+        </div>
+    </form>
+{% endblock %}
