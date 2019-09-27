@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container card card-1 text-center mt-5 py-5">
+        <h3>Вы точно хотите удалить тип {{ type.status }}?</h3>
+        <form action="{% url 'type_delete_url' pk=type.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">ДА</button>
+            <a href="{% url 'type_url' %}" class="btn btn-primary">НЕТ</a>
+        </form>
+    </div>
+{% endblock %}
