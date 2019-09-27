@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from .models import *
 from .forms import *
+from django.db.models import ProtectedError
 
 
 class MainPage(TemplateView):
@@ -108,7 +109,10 @@ class StatusDelete(TemplateView):
 
     def post(self, request, pk):
         status = get_object_or_404(TaskStatus, pk=pk)
-        status.delete()
+        try:
+            status.delete()
+        except ProtectedError:
+            return render(request, 'error_page.html')
         return redirect('status_url')
 
 
@@ -169,7 +173,6 @@ class TypeCreate(TemplateView):
             return redirect('type_url')
 
 
-
 class StatusCreate(TemplateView):
     template_name = 'status_create.html'
 
@@ -183,6 +186,3 @@ class StatusCreate(TemplateView):
         if bound_form.is_valid():
             bound_form.save()
             return redirect('status_url')
-
-
-
