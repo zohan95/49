@@ -145,7 +145,10 @@ class TypeDelete(TemplateView):
 
     def post(self, request, pk):
         task_type = get_object_or_404(TaskType, pk=pk)
-        task_type.delete()
+        try:
+            task_type.delete()
+        except ProtectedError:
+            return render(request, 'error_page.html')
         return redirect('type_url')
 
 
