@@ -8,8 +8,10 @@
             <span class="btn btn-light disabled mx-1">Назад</span>
         {% endif %}
 
-        <span>
-            Страница <input class="page-input" type="text" name="page" value="{{ page_obj.number }}" maxlength="5"> из {{ paginator.num_pages }}.
+        <span class="current">
+
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+
         </span>
 
         {% if page_obj.has_next %}

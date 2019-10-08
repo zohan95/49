@@ -53,7 +53,7 @@ class UpdateView(View):
         return redirect(self.get_redirect_url())
 
     def form_invalid(self, form):
-        context = {'form': form, 'pk':self.pkey}
+        context = {'form': form, 'pk': self.pkey}
         return render(self.request, self.template_name, context)
 
     def get_redirect_url(self):

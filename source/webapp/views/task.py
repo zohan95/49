@@ -1,6 +1,6 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.core.paginator import Paginator
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import ListView, CreateView
 from webapp.models import Task
 from webapp.forms import TaskForm
 from .utils import DetailView, UpdateView, DeleteView
