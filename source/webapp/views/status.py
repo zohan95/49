@@ -1,9 +1,10 @@
 from django.db.models import ProtectedError
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from webapp.forms import StatusForm
 from webapp.models import TaskStatus
-from .utils import ListView, DetailView
+from .utils import ListView
+from django.urls import reverse_lazy
 
 
 class StatusView(ListView):
@@ -48,16 +49,8 @@ class StatusDelete(TemplateView):
         return redirect('status_url')
 
 
-class StatusCreate(TemplateView):
+class StatusCreate(CreateView):
+    model = TaskStatus
+    fields = ['status']
     template_name = 'status/status_create.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = StatusForm
-        return context
-
-    def post(self, request):
-        bound_form = StatusForm(request.POST)
-        if bound_form.is_valid():
-            bound_form.save()
-            return redirect('status_url')
+    success_url = reverse_lazy('status_url')
