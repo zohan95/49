@@ -5,7 +5,7 @@ from .models import Task, TaskType, TaskStatus, Project
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['summary', 'description', 'task_status', 'task_type']
+        fields = ['summary', 'description', 'task_status', 'task_type', 'project']
 
 
 class StatusForm(forms.ModelForm):

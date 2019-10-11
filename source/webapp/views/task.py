@@ -11,7 +11,7 @@ class TaskDetails(DetailView):
 
 class TaskCreate(CreateView):
     model = Task
-    fields = ['summary', 'description', 'task_status', 'task_type']
+    fields = ['summary', 'description', 'task_status', 'task_type', 'project']
     template_name = 'task/task_create.html'
     success_url = reverse_lazy('main_url')
 
@@ -19,7 +19,7 @@ class TaskCreate(CreateView):
 class TaskEdit(UpdateView):
     model = Task
     template_name = 'task/task_edit.html'
-    fields = ['summary', 'description', 'task_status', 'task_type']
+    fields = ['summary', 'description', 'task_status', 'task_type', 'project']
     success_url = reverse_lazy('main_url')
 
 
