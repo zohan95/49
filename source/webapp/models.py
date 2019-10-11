@@ -40,3 +40,6 @@ class Project(models.Model):
     def delete(self):
         self.status = STATUS_CHOICES[1][0]
         self.save()
+
+    def __str__(self):
+        return self.summary[:15]
