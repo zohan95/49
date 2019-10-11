@@ -3,7 +3,7 @@
   "model": "webapp.taskstatus",
   "pk": 1,
   "fields": {
-    "status": "new"
+    "status": "new12"
   }
 },
 {
@@ -21,17 +21,17 @@
   }
 },
 {
-  "model": "webapp.tasktype",
-  "pk": 1,
+  "model": "webapp.taskstatus",
+  "pk": 7,
   "fields": {
-    "type": "task"
+    "status": "asd"
   }
 },
 {
   "model": "webapp.tasktype",
   "pk": 2,
   "fields": {
-    "type": "bug"
+    "type": "dsd"
   }
 },
 {
@@ -42,14 +42,10 @@
   }
 },
 {
-  "model": "webapp.task",
-  "pk": 2,
+  "model": "webapp.tasktype",
+  "pk": 6,
   "fields": {
-    "summary": "task2",
-    "description": "task 2 desc",
-    "task_status": 2,
-    "task_type": 2,
-    "date_create": "2019-09-26T04:46:19.054Z"
+    "type": "asddsa"
   }
 },
 {
@@ -60,18 +56,8 @@
     "description": "task 3 desc",
     "task_status": 3,
     "task_type": 3,
-    "date_create": "2019-09-26T04:46:31.320Z"
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 4,
-  "fields": {
-    "summary": "task 4",
-    "description": "task 4 desc",
-    "task_status": 1,
-    "task_type": 2,
-    "date_create": "2019-09-26T04:46:44.486Z"
+    "date_create": "2019-09-26T04:46:31.320Z",
+    "project": 2
   }
 },
 {
@@ -82,18 +68,52 @@
     "description": "task 5 desc",
     "task_status": 1,
     "task_type": 3,
-    "date_create": "2019-09-26T04:46:56.790Z"
+    "date_create": "2019-09-26T04:46:56.790Z",
+    "project": null
   }
 },
 {
   "model": "webapp.task",
-  "pk": 6,
+  "pk": 8,
   "fields": {
-    "summary": "lol",
+    "summary": "asdsad",
     "description": "",
-    "task_status": 1,
+    "task_status": 7,
+    "task_type": 6,
+    "date_create": "2019-09-27T08:14:10.690Z",
+    "project": 1
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 10,
+  "fields": {
+    "summary": "dsfmlkdf",
+    "description": "slkdnflkdsf",
+    "task_status": 3,
     "task_type": 3,
-    "date_create": "2019-09-26T06:38:12.396Z"
+    "date_create": "2019-10-08T04:24:31.293Z",
+    "project": 1
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 1,
+  "fields": {
+    "summary": "123",
+    "description": "kjsdnfkjnf",
+    "date_create": "2019-10-11T04:41:52.206Z",
+    "date_update": "2019-10-11T04:41:52.206Z"
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 2,
+  "fields": {
+    "summary": "321",
+    "description": "sdfsdfew",
+    "date_create": "2019-10-11T04:42:24.198Z",
+    "date_update": "2019-10-11T04:42:24.198Z"
   }
 },
 {
@@ -101,7 +121,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$150000$cViQB08d6C2A$QI7R+0yJUwnlME376Upjiv1yfegPPO4mMsJOTkNVvsQ=",
-    "last_login": "2019-09-26T04:20:55.704Z",
+    "last_login": "2019-10-11T04:41:42.480Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
