@@ -3,27 +3,28 @@
     <form action="{% url 'main_url' %}" method="post">
         {% csrf_token %}
         <div class="container mt-5">
-            <div class="row">
-                {% for i in object_list %}
-                    <div class="col-sm-4 my-2">
-                        <div class="card card-1 ">
-                            <div id="question_text_{{ i.pk }}">
-                                <div class="card-body">
-                                    <p class="card-text">{{ i.summary }}</p>
-                                    <hr>
-                                    <p class="card-text">{{ i.description }}</p>
-                                    <hr>
-                                    <a href="{% url 'project_details_url' i.pk %}" class="btn btn-primary">Детали</a>
-                                    <a href="{% url 'project_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
-                                    <a href="{% url 'project_delete_url' i.pk %}" class="btn btn-danger">X</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% if is_paginated %}
-                {% include 'partial/pagination.html' %}
-            {% endif %}
+            <div class="card-1">
+                <h3>Активные</h3>
+                <div class="row">
+                    {% for i in object_list %}
+                        {% if i.status == 'active' %}
+                            {% include 'partial/project_list.html' %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-1 my-5" style="background-color: lightsalmon">
+                <h3>Неактивные</h3>
+                <div class="row">
+                    {% for i in object_list %}
+                        {% if i.status != 'active' %}
+                            {% include 'partial/project_list.html' %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if is_paginated %}
+                        {% include 'partial/pagination.html' %}
+                    {% endif %}
+                </div>
             </div>
         </div>
         <div class="plus-button">

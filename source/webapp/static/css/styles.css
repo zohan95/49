@@ -32,7 +32,7 @@
     right: 20px;
 }
 
-.plus-button:cover{
+.plus-button:cover {
     box-shadow: 0 14px 28px rgba(255, 51, 44, 0.99), 0 10px 10px rgb(255, 95, 100);
 }
 
@@ -41,13 +41,14 @@
     padding-left: 20px;
     padding-right: 20px;
 }
-.ul-detail ul{
+
+.ul-detail ul {
     list-style-type: none;
 }
-.text-p{
+
+.text-p {
     white-space: pre-wrap;
 }
-
 
 .minus-button {
     width: 75px;

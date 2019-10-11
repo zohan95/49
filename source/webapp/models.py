@@ -1,5 +1,7 @@
 from django.db import models
 
+STATUS_CHOICES = (('active', 'Активный'), ('inactive', 'Закрытый'))
+
 
 class TaskStatus(models.Model):
     status = models.CharField(max_length=100, verbose_name='Статус')
@@ -21,7 +23,8 @@ class Task(models.Model):
     task_status = models.ForeignKey(TaskStatus, on_delete=models.PROTECT, verbose_name='Статус')
     task_type = models.ForeignKey(TaskType, on_delete=models.PROTECT, verbose_name='Тип')
     date_create = models.DateTimeField(auto_now_add=True)
-    project = models.ForeignKey('webapp.Project', verbose_name='Проект', related_name='projects', blank=False, null=True, on_delete=models.PROTECT)
+    project = models.ForeignKey('webapp.Project', verbose_name='Проект', related_name='projects', blank=False,
+                                null=True, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.summary[:20]
@@ -32,5 +35,8 @@ class Project(models.Model):
     description = models.TextField(max_length=2000, blank=True, null=True, verbose_name='Описание')
     date_create = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0])
 
-
+    def delete(self):
+        self.status = STATUS_CHOICES[1][0]
+        self.save()

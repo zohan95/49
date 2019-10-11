@@ -8,9 +8,8 @@
         <p>Дата изменения: {{ project.date_update }}</p>
     </div>
     <div class="container my-3">
-    <h3>Задачи:</h3>
+        <h3>Задачи:</h3>
         <div class="row">
-
             {% for i in tasks %}
                 <div class="col-sm-4 my-2">
                     <div class="card card-1 ">
@@ -25,9 +24,11 @@
                                 <p>{{ i.task_type }}</p>
                                 <a href="{% url 'task_details_url' i.pk %}"
                                    class="btn btn-primary">Детали</a>
-                                <a href="{% url 'task_edit_url' i.pk %}"
-                                   class="btn btn-success">Изменить</a>
-                                <a href="{% url 'task_delete_url' i.pk %}" class="btn btn-danger">X</a>
+                                {% if project.status == 'active' %}
+                                    <a href="{% url 'task_edit_url' i.pk %}"
+                                       class="btn btn-success">Изменить</a>
+                                    <a href="{% url 'task_delete_url' i.pk %}" class="btn btn-danger">X</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

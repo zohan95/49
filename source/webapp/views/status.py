@@ -26,6 +26,3 @@ class StatusCreate(CreateView):
     fields = ['status']
     template_name = 'status/status_create.html'
     success_url = reverse_lazy('status_url')
-
-
-

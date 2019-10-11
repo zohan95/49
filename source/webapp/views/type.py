@@ -1,4 +1,4 @@
-from django.views.generic import CreateView,  ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from webapp.forms import TypeForm
 from webapp.models import TaskType
 from django.urls import reverse_lazy
@@ -27,5 +27,3 @@ class TypeCreate(CreateView):
     fields = ['type']
     template_name = 'type/type_create.html'
     success_url = reverse_lazy('type_url')
-
-

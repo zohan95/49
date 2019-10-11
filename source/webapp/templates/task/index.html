@@ -17,16 +17,18 @@
                                     <hr>
                                     <p>{{ i.task_type }}</p>
                                     <a href="{% url 'task_details_url' i.pk %}" class="btn btn-primary">Детали</a>
-                                    <a href="{% url 'task_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
-                                    <a href="{% url 'task_delete_url' i.pk %}" class="btn btn-danger">X</a>
+                                    {% if i.project.status == 'active' %}
+                                        <a href="{% url 'task_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
+                                        <a href="{% url 'task_delete_url' i.pk %}" class="btn btn-danger">X</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-            {% if is_paginated %}
-                {% include 'partial/pagination.html' %}
-            {% endif %}
+                {% if is_paginated %}
+                    {% include 'partial/pagination.html' %}
+                {% endif %}
             </div>
         </div>
         <div class="plus-button">

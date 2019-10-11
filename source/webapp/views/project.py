@@ -1,7 +1,9 @@
 from django.core.paginator import Paginator
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
-from webapp.models import Project, Task
+from webapp.models import Project, Task, STATUS_CHOICES
 from django.urls import reverse_lazy
+from django.http import Http404
+from django.shortcuts import get_object_or_404
 
 
 class ProjectView(ListView):
@@ -48,6 +50,3 @@ class ProjectCreate(CreateView):
     template_name = 'project/create.html'
     fields = ['summary', 'description']
     success_url = reverse_lazy('project_url')
-
-
-
