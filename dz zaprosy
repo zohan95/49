@@ -1,5 +1,5 @@
-Task.objects.filter(task_status='done', date_create__lte=timezone.now()-timedelta(days=30))
-<QuerySet [<Task: ыфвтв>, <Task: dsfs>, <Task: afdfdsf>]>
+Task.objects.filter(task_status__status='done', date_create__gte=timezone.now()-timedelta(days=30))
+<QuerySet [<Task: task3>, <Task: dsfmlkdf>, <Task: ыфвтв>, <Task: dsfs>, <Task: ыва>]>
 
 Task.objects.filter(project__summary='123').values('task_type__type')
 <QuerySet [{'task_type__type': 'enhancement'}, {'task_type__type': 'enhancement'}, {'task_type__type': 'asddsa'}, {'task_type__type': 'enhancement'}, {'task_type__type': 'enhancement'}, {'task_type__type': 'dsd'}, {'task_type__type': 'dsd'}, {'task_type__type': 'dsd'}]>
