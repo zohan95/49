@@ -1,33 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
     {% include 'partial/simple_search.html' %}
-
-        <div class="container mt-5">
-            <div class="card-1">
-                <h3>Активные</h3>
-                <div class="row">
-                    {% for i in object_list %}
-                        {% if i.status == 'active' %}
-                            {% include 'partial/project_list.html' %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="card-1 my-5" style="background-color: lightsalmon">
-                <h3>Неактивные</h3>
-                <div class="row">
-                    {% for i in object_list %}
-                        {% if i.status != 'active' %}
-                            {% include 'partial/project_list.html' %}
-                        {% endif %}
-                    {% endfor %}
-                    {% if is_paginated %}
-                        {% include 'partial/pagination.html' %}
+    <div class="container mt-5">
+        <div class="card-1">
+            <h3>Активные</h3>
+            <div class="row">
+                {% for i in object_list %}
+                    {% if i.status == 'active' %}
+                        {% include 'partial/project_list.html' %}
                     {% endif %}
-                </div>
+                {% endfor %}
             </div>
         </div>
-        <div class="plus-button">
-            <a href="{% url 'project_create_url' %}" class="text-decoration-none">+</a>
+        <div class="card-1 my-5" style="background-color: lightsalmon">
+            <h3>Неактивные</h3>
+            <div class="row">
+                {% for i in object_list %}
+                    {% if i.status != 'active' %}
+                        {% include 'partial/project_list.html' %}
+                    {% endif %}
+                {% endfor %}
+                {% if is_paginated %}
+                    {% include 'partial/pagination.html' %}
+                {% endif %}
+            </div>
         </div>
+    </div>
+    <div class="plus-button">
+        <a href="{% url 'project_create_url' %}" class="text-decoration-none">+</a>
+    </div>
 {% endblock %}
