@@ -1,0 +1,9 @@
+Task.objects.filter(project__status='inactive')
+<QuerySet [<Task: ыфвтв>, <Task: dsfs>, <Task: afdfdsf>]>
+
+Task.objects.filter(project__summary='123').values('task_type__type')
+<QuerySet [{'task_type__type': 'enhancement'}, {'task_type__type': 'enhancement'}, {'task_type__type': 'asddsa'}, {'task_type__type': 'enhancement'}, {'task_type__type': 'enhancement'}, {'task_type__type': 'dsd'}, {'task_type__type': 'dsd'}, {'task_type__type': 'dsd'}]>
+
+Project.objects.filter(projects__summary__icontains='asd')
+<QuerySet [<Project: 123>]>
+
