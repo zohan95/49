@@ -1,4 +1,4 @@
-Task.objects.filter(project__status='inactive')
+Task.objects.filter(project__status='inactive', date_create__lte=timezone.now()-timedelta(days=30))
 <QuerySet [<Task: ыфвтв>, <Task: dsfs>, <Task: afdfdsf>]>
 
 Task.objects.filter(project__summary='123').values('task_type__type')
@@ -6,4 +6,8 @@ Task.objects.filter(project__summary='123').values('task_type__type')
 
 Project.objects.filter(projects__summary__icontains='asd')
 <QuerySet [<Project: 123>]>
+
+
+
+
 
