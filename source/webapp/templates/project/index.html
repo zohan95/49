@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form action="{% url 'main_url' %}" method="post">
-        {% csrf_token %}
+    {% include 'partial/simple_search.html' %}
+
         <div class="container mt-5">
             <div class="card-1">
                 <h3>Активные</h3>
@@ -30,5 +30,4 @@
         <div class="plus-button">
             <a href="{% url 'project_create_url' %}" class="text-decoration-none">+</a>
         </div>
-    </form>
 {% endblock %}
