@@ -8,13 +8,13 @@ class TypeEdit(UpdateView):
     template_name = 'type/type_edit.html'
     model = TaskType
     fields = ['type']
-    success_url = reverse_lazy('type_url')
+    success_url = reverse_lazy('webapp:type_url')
 
 
 class TypeDelete(DeleteView):
     template_name = 'type/type_delete.html'
     model = TaskType
-    success_url = reverse_lazy('type_url')
+    success_url = reverse_lazy('webapp:type_url')
 
 
 class TypeView(ListView):
@@ -26,4 +26,4 @@ class TypeCreate(CreateView):
     model = TaskType
     fields = ['type']
     template_name = 'type/type_create.html'
-    success_url = reverse_lazy('type_url')
+    success_url = reverse_lazy('webapp:type_url')

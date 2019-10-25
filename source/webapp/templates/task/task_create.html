@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container mt-5">
-        <form action="{% url 'task_create_url' %}" method="post">
+        <form action="{% url 'webapp:task_create_url' %}" method="post">
             {% include 'partial/task_form.html' with button_text='Создать' %}
         </form>
     </div>

@@ -15,10 +15,10 @@
                                 <p>{{ i.task_status }}</p>
                                 <hr>
                                 <p>{{ i.task_type }}</p>
-                                <a href="{% url 'task_details_url' i.pk %}" class="btn btn-primary">Детали</a>
+                                <a href="{% url 'webapp:task_details_url' i.pk %}" class="btn btn-primary">Детали</a>
                                 {% if i.project.status == 'active' %}
-                                    <a href="{% url 'task_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
-                                    <a href="{% url 'task_delete_url' i.pk %}" class="btn btn-danger">X</a>
+                                    <a href="{% url 'webapp:task_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
+                                    <a href="{% url 'webapp:task_delete_url' i.pk %}" class="btn btn-danger">X</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -31,6 +31,6 @@
         </div>
     </div>
     <div class="plus-button">
-        <a href="{% url 'task_create_url' %}" class="text-decoration-none">+</a>
+        <a href="{% url 'webapp:task_create_url' %}" class="text-decoration-none">+</a>
     </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form action="{% url 'type_url' %}" method="post">
+    <form action="{% url 'webapp:type_url' %}" method="post">
         {% csrf_token %}
         <div class="container mt-5">
             <h3>Типы задач</h3>
@@ -12,8 +12,8 @@
                             <div id="question_text_{{ i.pk }}">
                                 <div class="card-body">
                                     <p class="card-text">{{ i.type }}</p>
-                                    <a href="{% url 'type_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
-                                    <a href="{% url 'type_delete_url' i.pk %}" class="btn btn-danger">X</a>
+                                    <a href="{% url 'webapp:type_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
+                                    <a href="{% url 'webapp:type_delete_url' i.pk %}" class="btn btn-danger">X</a>
                                 </div>
                             </div>
                         </div>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="plus-button">
-            <a href="{% url 'type_create_url' %}" class="text-decoration-none">+</a>
+            <a href="{% url 'webapp:type_create_url' %}" class="text-decoration-none">+</a>
         </div>
     </form>
 {% endblock %}

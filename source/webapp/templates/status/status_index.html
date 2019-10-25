@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <form action="{% url 'status_url' %}" method="post">
+    <form action="{% url 'webapp:status_url' %}" method="post">
         {% csrf_token %}
         <div class="container mt-5">
             <h3>Статусы</h3>
@@ -13,8 +13,8 @@
                             <div id="question_text_{{ i.pk }}">
                                 <div class="card-body">
                                     <p class="card-text">{{ i.status }}</p>
-                                    <a href="{% url 'status_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
-                                    <a href="{% url 'status_delete_url' i.pk %}" class="btn btn-danger">X</a>
+                                    <a href="{% url 'webapp:status_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
+                                    <a href="{% url 'webapp:status_delete_url' i.pk %}" class="btn btn-danger">X</a>
                                 </div>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="plus-button">
-            <a href="{% url 'status_create_url' %}" class="text-decoration-none">+</a>
+            <a href="{% url 'webapp:status_create_url' %}" class="text-decoration-none">+</a>
         </div>
     </form>
 {% endblock %}

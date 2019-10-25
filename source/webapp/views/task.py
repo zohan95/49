@@ -20,7 +20,7 @@ class TaskCreate(CreateView):
     model = Task
     fields = ['summary', 'description', 'task_status', 'task_type', 'project']
     template_name = 'task/task_create.html'
-    success_url = reverse_lazy('main_url')
+    success_url = reverse_lazy('webapp:main_url')
 
     def form_valid(self, form):
         project = form.cleaned_data['project']
@@ -36,7 +36,7 @@ class TaskEdit(UpdateView):
     model = Task
     template_name = 'task/task_edit.html'
     fields = ['summary', 'description', 'task_status', 'task_type', 'project']
-    success_url = reverse_lazy('main_url')
+    success_url = reverse_lazy('webapp:main_url')
 
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
@@ -49,7 +49,7 @@ class TaskEdit(UpdateView):
 
 class TaskDelete(DeleteView):
     template_name = 'task/task_delete.html'
-    success_url = reverse_lazy('main_url')
+    success_url = reverse_lazy('webapp:main_url')
     model = Task
 
     def get(self, request, *args, **kwargs):

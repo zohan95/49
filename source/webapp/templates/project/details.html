@@ -22,12 +22,12 @@
                                 <p>{{ i.task_status }}</p>
                                 <hr>
                                 <p>{{ i.task_type }}</p>
-                                <a href="{% url 'task_details_url' i.pk %}"
+                                <a href="{% url 'webapp:task_details_url' i.pk %}"
                                    class="btn btn-primary">Детали</a>
                                 {% if project.status == 'active' %}
-                                    <a href="{% url 'task_edit_url' i.pk %}"
+                                    <a href="{% url 'webapp:task_edit_url' i.pk %}"
                                        class="btn btn-success">Изменить</a>
-                                    <a href="{% url 'task_delete_url' i.pk %}" class="btn btn-danger">X</a>
+                                    <a href="{% url 'webapp:task_delete_url' i.pk %}" class="btn btn-danger">X</a>
                                 {% endif %}
                             </div>
                         </div>

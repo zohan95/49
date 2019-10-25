@@ -6,7 +6,7 @@
         <form method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">ДА</button>
-            <a href="{% url 'main_url' %}" class="btn btn-primary">НЕТ</a>
+            <a href="{% url 'webapp:main_url' %}" class="btn btn-primary">НЕТ</a>
         </form>
     </div>
 {% endblock %}

@@ -65,17 +65,17 @@ class ProjectEdit(UpdateView):
     model = Project
     template_name = 'status/status_edit.html'
     fields = ['summary', 'description']
-    success_url = reverse_lazy('project_url')
+    success_url = reverse_lazy('webapp:project_url')
 
 
 class ProjectDelete(DeleteView):
     model = Project
     template_name = 'project/delete.html'
-    success_url = reverse_lazy('project_url')
+    success_url = reverse_lazy('webapp:project_url')
 
 
 class ProjectCreate(CreateView):
     model = Project
     template_name = 'project/create.html'
     fields = ['summary', 'description']
-    success_url = reverse_lazy('project_url')
+    success_url = reverse_lazy('webapp:project_url')
