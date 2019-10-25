@@ -1,5 +1,6 @@
 from urllib.parse import urlencode
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
@@ -43,7 +44,7 @@ class ProjectView(ListView):
         return None
 
 
-class ProjectDetails(DeleteView):
+class ProjectDetails(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = 'project/details.html'
 
@@ -61,20 +62,20 @@ class ProjectDetails(DeleteView):
         return context
 
 
-class ProjectEdit(UpdateView):
+class ProjectEdit(LoginRequiredMixin, UpdateView):
     model = Project
     template_name = 'status/status_edit.html'
     fields = ['summary', 'description']
     success_url = reverse_lazy('webapp:project_url')
 
 
-class ProjectDelete(DeleteView):
+class ProjectDelete(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = 'project/delete.html'
     success_url = reverse_lazy('webapp:project_url')
 
 
-class ProjectCreate(CreateView):
+class ProjectCreate(LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'project/create.html'
     fields = ['summary', 'description']

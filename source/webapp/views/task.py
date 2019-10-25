@@ -1,5 +1,6 @@
 from urllib.parse import urlencode
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
@@ -9,6 +10,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from webapp.forms import SimpleSearchForm
 from webapp.models import Task, STATUS_CHOICES
 from django.forms.utils import ErrorList
+from django.contrib.auth.decorators import login_required
 
 
 class TaskDetails(DetailView):
@@ -16,7 +18,7 @@ class TaskDetails(DetailView):
     model = Task
 
 
-class TaskCreate(CreateView):
+class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['summary', 'description', 'task_status', 'task_type', 'project']
     template_name = 'task/task_create.html'
@@ -32,7 +34,7 @@ class TaskCreate(CreateView):
             return render(self.request, 'task/task_create.html', {'form': form})
 
 
-class TaskEdit(UpdateView):
+class TaskEdit(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = 'task/task_edit.html'
     fields = ['summary', 'description', 'task_status', 'task_type', 'project']
@@ -47,7 +49,7 @@ class TaskEdit(UpdateView):
             raise Http404
 
 
-class TaskDelete(DeleteView):
+class TaskDelete(LoginRequiredMixin, DeleteView):
     template_name = 'task/task_delete.html'
     success_url = reverse_lazy('webapp:main_url')
     model = Task
