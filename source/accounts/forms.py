@@ -10,6 +10,8 @@ class SignUpForm(forms.Form):
     password_confirm = forms.CharField(max_length=100, required=True, label='Password confirm',
                                        widget=forms.PasswordInput)
     email = forms.EmailField(required=True, label='Email')
+    first_name = forms.CharField(max_length=100, label='First name', required=False)
+    second_name = forms.CharField(max_length=100, label='Second Name', required=False)
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
@@ -27,6 +29,12 @@ class SignUpForm(forms.Form):
         except User.DoesNotExist:
             return email
 
+    def clean_first_name(self):
+        f_name = self.cleaned_data.get('first_name')
+        s_name = self.cleaned_data.get('second_name')
+        if not (f_name or s_name):
+            raise ValidationError('Enter First or Second name')
+
     def clean(self):
         super().clean()
         password_1 = self.cleaned_data.get('password')
@@ -34,3 +42,5 @@ class SignUpForm(forms.Form):
         if password_1 != password_2:
             raise ValidationError('Passwords do not match.', code='passwords_do_not_match')
         return self.cleaned_data
+
+

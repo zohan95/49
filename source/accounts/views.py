@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from accounts.forms import SignUpForm
 
+
 def login_view(request):
     context = {}
     if request.method == 'POST':
