@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, ListView
 
 from accounts.forms import SignUpForm, UserChangePasswordForm, UserChangeForm
 
@@ -80,4 +80,10 @@ class UserChangePasswordView(UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('accounts:login')
+
+
+class AllUsers(ListView):
+    model = User
+    template_name = 'all_users.html'
+    context_object_name = 'allusers'
 

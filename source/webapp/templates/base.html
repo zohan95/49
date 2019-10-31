@@ -32,7 +32,9 @@
                 {% block menu %}
             {% endblock %}
                 {% if user.is_authenticated %}
-
+                    <li class="nav-item active">
+                        <a href="{% url 'accounts:all_users'%}" class="nav-link">Пользователи</a>
+                    </li>
                     <li class="nav-link">
                         Hello, <a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a>
                     </li>
