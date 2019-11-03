@@ -1,6 +1,6 @@
 from urllib.parse import urlencode
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from webapp.forms import SimpleSearchForm
-from webapp.models import Task, STATUS_CHOICES
+from webapp.models import Task, STATUS_CHOICES, Team, Project
 from django.forms.utils import ErrorList
 from django.contrib.auth.decorators import login_required
 
@@ -26,12 +26,20 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         project = form.cleaned_data['project']
+        team = Team.objects.filter(user_id=self.request.user.id, project_id=project.id)
+
         if project.status == STATUS_CHOICES[0][0]:
-            return super().form_valid(form)
+            if team:
+                return super().form_valid(form)
+            else:
+                errors = form._errors.setdefault("project", ErrorList())
+                errors.append(u"Вы не в команде!!!")
+                return render(self.request, 'task/task_create.html', {'form': form})
         else:
             errors = form._errors.setdefault("project", ErrorList())
             errors.append(u"Вы выбрали неактивный проект!!!")
             return render(self.request, 'task/task_create.html', {'form': form})
+
 
 
 class TaskEdit(LoginRequiredMixin, UpdateView):
@@ -43,7 +51,8 @@ class TaskEdit(LoginRequiredMixin, UpdateView):
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
         task = get_object_or_404(Task, pk=pk)
-        if task.project.status == STATUS_CHOICES[0][0]:
+        team = Team.objects.filter(user_id=self.request.user.id, project_id=task.project.id)
+        if task.project.status == STATUS_CHOICES[0][0] and team:
             return super().get(self, request, *args, **kwargs)
         else:
             raise Http404
@@ -57,7 +66,8 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
         task = get_object_or_404(Task, pk=pk)
-        if task.project.status == STATUS_CHOICES[0][0]:
+        team = Team.objects.filter(user_id=self.request.user.id, project_id=task.project.id)
+        if task.project.status == STATUS_CHOICES[0][0] and team:
             return super().get(self, request, *args, **kwargs)
         else:
             raise Http404

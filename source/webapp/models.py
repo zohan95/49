@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 STATUS_CHOICES = (('active', 'Активный'), ('inactive', 'Закрытый'))
 
@@ -43,5 +44,12 @@ class Project(models.Model):
 
     def __str__(self):
         return self.summary[:15]
+
+
+class Team(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Пользователь', related_name='team_user')
+    project_id = models.ForeignKey(Project, on_delete=models.PROTECT, verbose_name='Проект', related_name='team_project')
+    date_start = models.DateTimeField()
+    date_end = models.DateTimeField()
 
 
