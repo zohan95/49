@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.views.generic import DetailView, UpdateView, ListView
-
+from .models import Profile
 from accounts.forms import SignUpForm, UserChangePasswordForm, UserChangeForm
 
 
@@ -44,6 +44,7 @@ def register_view(request):
             )
             user.set_password(form.cleaned_data.get('password'))
             user.save()
+            Profile.objects.create(user=user)
 
             return redirect('webapp:main_url')
         else:
