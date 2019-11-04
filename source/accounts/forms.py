@@ -60,7 +60,8 @@ class UserChangeForm(forms.ModelForm):
 
     def clean_git_hub(self):
         git_hub = self.cleaned_data.get('git_hub')
-        if git_hub[:17]!='http://github.com':
+        print(git_hub)
+        if git_hub[:17]!='http://github.com' and git_hub[:18]!='https://github.com':
             raise ValidationError('Please enter: http://github.com/<username>')
         else:
             return git_hub

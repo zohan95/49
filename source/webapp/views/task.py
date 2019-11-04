@@ -1,6 +1,7 @@
 from urllib.parse import urlencode
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
@@ -55,7 +56,7 @@ class TaskEdit(LoginRequiredMixin, UpdateView):
         if task.project.status == STATUS_CHOICES[0][0] and team:
             return super().get(self, request, *args, **kwargs)
         else:
-            raise Http404
+            raise PermissionDenied()
 
 
 class TaskDelete(LoginRequiredMixin, DeleteView):
@@ -70,7 +71,7 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
         if task.project.status == STATUS_CHOICES[0][0] and team:
             return super().get(self, request, *args, **kwargs)
         else:
-            raise Http404
+            raise PermissionDenied()
 
 
 class MainPage(ListView):
