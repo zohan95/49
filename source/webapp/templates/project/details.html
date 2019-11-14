@@ -6,6 +6,12 @@
         <p>Детальное описание: {{ project.description }}</p>
         <p>Дата создания: {{ project.date_create }}</p>
         <p>Дата изменения: {{ project.date_update }}</p>
+        <div>
+            <h3>Пользователи:</h3>
+            {% for i in slaves %}
+                <p>{{ i.user_id }} <i>{{ i.date_start|date:'d-m-Y H:i:s' }}</i></p>
+            {% endfor %}
+        </div>
     </div>
     <div class="container my-3">
         <h3>Задачи:</h3>

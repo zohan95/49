@@ -24,6 +24,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
     fields = ['summary', 'description', 'task_status', 'task_type', 'project']
     template_name = 'task/task_create.html'
     success_url = reverse_lazy('webapp:main_url')
+    permission_required = 'webapp.add_task'
 
     def form_valid(self, form):
         project = form.cleaned_data['project']
@@ -48,6 +49,7 @@ class TaskEdit(LoginRequiredMixin, UpdateView):
     template_name = 'task/task_edit.html'
     fields = ['summary', 'description', 'task_status', 'task_type', 'project']
     success_url = reverse_lazy('webapp:main_url')
+    permission_required = 'webapp.change_task'
 
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
@@ -63,6 +65,7 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
     template_name = 'task/task_delete.html'
     success_url = reverse_lazy('webapp:main_url')
     model = Task
+    permission_required = 'webapp.delete_task'
 
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')

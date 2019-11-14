@@ -2,8 +2,27 @@
 
 {% block content %}
     <div class="container">
-    <form method="post">
-        {% include 'partial/stat_type_part.html' with button_text='Создать' %}
-    </form>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group container mt-5">
+                    {% if field.errors %}
+                        <div class="alert alert-danger">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                    {{ field.label }}
+                    <br/>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <select name="user_list" multiple class="ml-3">
+                {% for i in list_users %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+        <br>
+            <button type="submit" class="btn btn-success ml-3 mt-2">Создать</button>
+        </form>
+    </div>
 {% endblock %}
-</div>
