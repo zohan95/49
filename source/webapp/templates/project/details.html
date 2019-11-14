@@ -9,7 +9,7 @@
         <div>
             <h3>Пользователи:</h3>
             {% for i in slaves %}
-                <p>{{ i.user_id }} <i>{{ i.date_start|date:'d-m-Y H:i:s' }}</i></p>
+                <p>{{ i.user_id }} <i>{{ i.date_start|date:'d-m-Y H:i:s' }}</i></p><a href="{% url 'webapp:team_user_del_url' i.user_id i.pk %}" class="btn-sm btn-danger">x</a>
             {% endfor %}
         </div>
     </div>

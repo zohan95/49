@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.shortcuts import render, redirect
 from django.utils.timezone import now
+from django.views import View
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 
 from webapp.forms import SimpleSearchForm, ProjectForm
@@ -156,3 +158,18 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
         for i in users:
             Team(project_id=self.object, user_id=User.objects.get(username=i), date_start=now()).save()
         return a
+
+
+class TeamUserDel(PermissionRequiredMixin, View):
+    permission_required = 'webapp.delete_team'
+    def get(self, *args, **kwargs):
+        pk = kwargs.get('id')
+        idd = kwargs.get('user_1')
+        print(pk, idd)
+        user_team = Team.objects.filter(pk=pk).filter(user_id=User.objects.get(username=idd)).filter(date_end=None).order_by('-date_start').first()
+        user_team.date_end = now()
+        user_team.save()
+        next = user_team.project_id.id
+        return redirect('/project/{}/'.format(next))
+
+

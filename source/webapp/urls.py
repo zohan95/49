@@ -24,4 +24,5 @@ urlpatterns = [
     path('project/edit/<int:pk>/', ProjectEdit.as_view(), name='project_edit_url'),
     path('project/delete/<int:pk>/', ProjectDelete.as_view(), name='project_delete_url'),
     path('project/create/', ProjectCreate.as_view(), name='project_create_url'),
+    path('project/user/delete/<str:user_1>/<int:id>/', TeamUserDel.as_view(), name='team_user_del_url')
 ]
