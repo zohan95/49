@@ -50,6 +50,7 @@ class Team(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Пользователь', related_name='team_user')
     project_id = models.ForeignKey(Project, on_delete=models.PROTECT, verbose_name='Проект', related_name='team_project')
     date_start = models.DateTimeField()
-    date_end = models.DateTimeField()
+    date_end = models.DateTimeField(null=True, blank=True)
+
 
 

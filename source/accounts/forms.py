@@ -29,9 +29,10 @@ class SignUpForm(forms.Form):
         except User.DoesNotExist:
             return email
 
-    def clean_first_name(self):
+    def clean_second_name(self):
         f_name = self.cleaned_data.get('first_name')
         s_name = self.cleaned_data.get('second_name')
+        print(f_name, s_name)
         if not (f_name or s_name):
             raise ValidationError('Enter First or Second name')
 

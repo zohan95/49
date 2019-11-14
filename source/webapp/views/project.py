@@ -3,11 +3,14 @@ from urllib.parse import urlencode
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.utils.timezone import now
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 from webapp.forms import SimpleSearchForm
-from webapp.models import Project, Task, STATUS_CHOICES
+from webapp.models import Project, Task, STATUS_CHOICES, Team
 from django.urls import reverse_lazy
+
+from webapp.views.forms import ProjectCreateForm
 
 
 class ProjectView(ListView):
@@ -65,7 +68,7 @@ class ProjectDetails(LoginRequiredMixin, DeleteView):
 class ProjectEdit(LoginRequiredMixin, UpdateView):
     model = Project
     template_name = 'status/status_edit.html'
-    fields = ['summary', 'description']
+    form_class = ProjectCreateForm
     success_url = reverse_lazy('webapp:project_url')
 
 
@@ -78,5 +81,14 @@ class ProjectDelete(LoginRequiredMixin, DeleteView):
 class ProjectCreate(LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'project/create.html'
-    fields = ['summary', 'description']
+    form_class = ProjectCreateForm
+
     success_url = reverse_lazy('webapp:project_url')
+
+    def get_success_url(self):
+        team = Team()
+        team.project_id = self.object
+        team.user_id = self.request.user
+        team.date_start = now()
+        team.save()
+        return reverse_lazy('webapp:project_url')
