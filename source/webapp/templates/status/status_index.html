@@ -13,7 +13,8 @@
                             <div id="question_text_{{ i.pk }}">
                                 <div class="card-body">
                                     <p class="card-text">{{ i.status }}</p>
-                                    <a href="{% url 'webapp:status_edit_url' i.pk %}" class="btn btn-success">Изменить</a>
+                                    <a href="{% url 'webapp:status_edit_url' i.pk %}"
+                                       class="btn btn-success">Изменить</a>
                                     <a href="{% url 'webapp:status_delete_url' i.pk %}" class="btn btn-danger">X</a>
                                 </div>
                             </div>

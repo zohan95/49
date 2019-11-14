@@ -30,10 +30,10 @@
                     <a class="nav-link" href="{% url 'webapp:project_url' %}">Проекты</a>
                 </li>
                 {% block menu %}
-            {% endblock %}
+                {% endblock %}
                 {% if user.is_authenticated %}
                     <li class="nav-item active">
-                        <a href="{% url 'accounts:all_users'%}" class="nav-link">Пользователи</a>
+                        <a href="{% url 'accounts:all_users' %}" class="nav-link">Пользователи</a>
                     </li>
                     <li class="nav-link">
                         Hello, <a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a>

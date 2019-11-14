@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('webapp', '0006_project_status'),
@@ -19,8 +18,11 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('date_start', models.DateTimeField()),
                 ('date_end', models.DateTimeField()),
-                ('project_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='team_project', to='webapp.Project', verbose_name='Проект')),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='team_user', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
+                ('project_id',
+                 models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='team_project',
+                                   to='webapp.Project', verbose_name='Проект')),
+                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='team_user',
+                                              to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
             ],
         ),
     ]

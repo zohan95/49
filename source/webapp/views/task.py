@@ -43,7 +43,6 @@ class TaskCreate(LoginRequiredMixin, CreateView):
             return render(self.request, 'task/task_create.html', {'form': form})
 
 
-
 class TaskEdit(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = 'task/task_edit.html'

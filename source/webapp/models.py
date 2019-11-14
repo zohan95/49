@@ -57,4 +57,3 @@ class Team(models.Model):
         permissions = (
             ('can_change_team', 'Can Change Team'),
         )
-

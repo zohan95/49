@@ -8,7 +8,6 @@ from django.db.models import Q
 from django.utils.timezone import now
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 
-
 from webapp.forms import SimpleSearchForm, ProjectForm
 from webapp.models import Project, Task, STATUS_CHOICES, Team
 from django.urls import reverse_lazy
