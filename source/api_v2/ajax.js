@@ -1,3 +1,30 @@
+
+
+$.ajax({
+
+    url: 'http://localhost:8000/api/v2/login/',
+
+    method: 'post',
+
+    data: JSON.stringify({username: 'admin', password: 'admin'}),
+
+    dataType: 'json',
+
+    contentType: 'application/json',
+
+    success: function(response, status){processes()},
+
+    error: function(response, status){console.log(response);}
+
+});
+
+
+
+
+
+
+function processes(){
+
 $.ajax({
 
      url: 'http://127.0.0.1:8000/api/v2/projectss/',
@@ -95,4 +122,4 @@ $.ajax({
 
      error: function(response, status){console.log(response);}
 
-});
+});}
