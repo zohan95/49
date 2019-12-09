@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'webapp',
     'accounts',
     'rest_framework',
-    'api_v2'
+    'api_v2',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,15 @@ DATABASES = {
     }
 }
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

@@ -10,8 +10,9 @@ class TaskSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    projectss = TaskSerializer(many=True, read_only=True, source='projects')
+    projectz = TaskSerializer(many=True, read_only=True, source='projects')
+
     class Meta:
         model = Project
-        fields = ('summary',  'description', 'status', 'projectss')
+        fields = ('summary',  'description', 'status', 'projectz')
 
